@@ -1,0 +1,11 @@
+# Ignore Python virtual environments
+.venv
+__pycache__
+*.pyc
+
+# Ignore Node modules
+node_modules/
+
+# Ignore sensitive secrets
+.env
+.env.local
