@@ -192,10 +192,14 @@ export default function SecureMCPConsole() {
       const data = await res.json();
       setMessages(prev => [...prev, { role: "model", content: data.response || "No response received." }]);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (err: any) {
-      console.error(err);
-      setMessages(prev => [...prev, { role: "model", content: "Error: " + (err.message || String(err)) }]);
-    } finally {
+      // Change (err: any) to (err: unknown)
+    } catch (err: unknown) {
+      // Cast it to an Error object safely when logging or using it
+      const errorMessage = err instanceof Error ? err.message : "An unknown error occurred";
+      console.error(errorMessage);
+      setMessages(prev => [...prev, { role: "model", content: "Failed to connect to backend server." }]);
+    }
+    finally {
       setIsChatLoading(false);
     }
   };
