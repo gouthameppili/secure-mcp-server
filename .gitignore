@@ -9,3 +9,5 @@ node_modules/
 # Ignore sensitive secrets
 .env
 .env.local
+.env.example
+backend/.env.example
